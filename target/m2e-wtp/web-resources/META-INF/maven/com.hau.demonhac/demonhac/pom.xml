@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hau.demonhac</groupId>
+  <artifactId>demonhac</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>5.3.12</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+	<dependency>
+	    <groupId>jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jsp-api</artifactId>
+	    <version>2.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.16</version>
+	</dependency>
+	<dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-extras</artifactId>
+      <version>3.0.8</version>
+    </dependency>
+    <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-mail</artifactId>
+	    <version>2.2.6.RELEASE</version>
+	</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.10.0.pr3</version>
+</dependency>
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.3.1</version>
+</dependency>
+
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>16</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

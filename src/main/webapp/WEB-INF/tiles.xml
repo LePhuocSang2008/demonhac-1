@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+   <definition name="index.chung"  
+       template="/WEB-INF/views/block/index.jsp">  
+    <put-attribute name="hero" value="" />
+    <put-attribute name="playlist" value="" />
+    <put-attribute name="category" value="" />
+    <put-attribute name="artist" value="" />
+    <put-attribute name="blog" value="" />
+    <put-attribute name="contact" value="" />
+    <put-attribute name="singer" value="" />
+    <put-attribute name="singerDetails" value="" />
+    <put-attribute name="login-sign" value="" />
+   </definition>
+   
+   <definition name="index_user"  extends="index.chung">  
+	<put-attribute name="hero" value="/WEB-INF/views/page/hero.jsp" />
+	<put-attribute name="playlist" value="/WEB-INF/views/page/playlist.jsp" />
+   </definition> 
+   
+   <definition name="category"  extends="index.chung">  
+	<put-attribute name="category" value="/WEB-INF/views/page/category.jsp" />
+   </definition> 
+        
+ <definition name="artist"  extends="index.chung">  
+	<put-attribute name="artist" value="/WEB-INF/views/page/artist.jsp" />
+   </definition>     
+   
+   <definition name="blog"  extends="index.chung">  
+	<put-attribute name="blog" value="/WEB-INF/views/page/blog.jsp" />
+   </definition>  
+   
+   <definition name="contact"  extends="index.chung">  
+	<put-attribute name="contact" value="/WEB-INF/views/page/contact.jsp" />
+   </definition> 
+   
+   <definition name="singer"  extends="index.chung">  
+	<put-attribute name="singer" value="/WEB-INF/views/page/singer.jsp" />
+   </definition>
+   
+   <definition name="singerDetails"  extends="index.chung">  
+	<put-attribute name="singerDetails" value="/WEB-INF/views/page/singerDetails.jsp" />
+   </definition>
+   
+      <definition name="login"  
+       template="/WEB-INF/views/block/login.jsp">  
+    
+   </definition>
+   
+   <definition name="registration"  
+       template="/WEB-INF/views/block/registration.jsp">  
+    
+   </definition>
+   
+   <definition name="admin"  
+       template="/WEB-INF/views/block/admin.jsp">  
+    
+   </definition>
+   
+   <definition name="admin_index.chung"  
+       template="/WEB-INF/views/block/admin.jsp">  
+    <put-attribute name="admin_casi" value="" />
+    <put-attribute name="admin_theloai" value="" />
+    <put-attribute name="admin_baihat" value="" />
+    <put-attribute name="admin_taikhoan" value="" />
+   </definition>
+   
+   <definition name="admin_casi"  extends="admin_index.chung">  
+	<put-attribute name="admin_casi" value="/WEB-INF/views/page/admin_casi.jsp" />
+   </definition>
+   
+   <definition name="admin_theloai"  extends="admin_index.chung">  
+	<put-attribute name="admin_theloai" value="/WEB-INF/views/page/admin_theloai.jsp" />
+   </definition>
+   
+   <definition name="admin_baihat"  extends="admin_index.chung">  
+	<put-attribute name="admin_baihat" value="/WEB-INF/views/page/admin_baihat.jsp" />
+   </definition>
+   
+   <definition name="admin_taikhoan"  extends="admin_index.chung">  
+	<put-attribute name="admin_taikhoan" value="/WEB-INF/views/page/admin_taikhoan.jsp" />
+   </definition>
+</tiles-definitions>
+
