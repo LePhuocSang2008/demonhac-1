@@ -28,5 +28,10 @@ public class theloaiService implements ItheloaiService{
 	public List<theloaiModel> findALL_byIDtheloai(Integer id_theloai) {
 		return this.theloai_Dao.findALL_byIDtheloai(id_theloai);
 	}
+	@Override
+	public void delete_IDtheloai(Integer idtheloai) {
+		this.theloai_Dao.delete_IDtheloai(idtheloai);
+		
+	}
 
 }

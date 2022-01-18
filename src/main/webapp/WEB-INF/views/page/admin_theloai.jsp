@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-     	<h2 style="margin-top: 2%"> Thể loại </h2>
+<h2 style="margin-top: 2%"> Thể loại </h2>
      	
-     	<table style="margin-top: 2%" class="table">
+     	<table style="margin-top: 2%;  table-layout: auto; font-size: 100%" class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -16,50 +16,28 @@
       
   </thead>
   <tbody>
+  <%int i = 1;%>
+     <c:forEach var="item" items="${theloai}">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td> 
+      <th  scope="row"><% out.print(i++); %></th>
+      <td>${item.tentheloai }</td>
+      <td><img style="width: 10%; height: 20%" src="${item.hinhanh }" alt="" ></td> 
       <td>
       	<span>
-      		<a href= " " > Xóa </a> 
+      		<a href= "http://localhost:8080/demonhac/xoatheloai?idtheloai=${item.id}" > Xóa </a> 
       		|
       		<a href= "" > Sửa </a>
       	</span>
       </td>
       
     </tr>
+      </c:forEach>
     
     
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>
-      	<span>
-      		<a href= " " > Xóa </a> 
-      		|
-      		<a href= "" > Sửa </a>
-      	</span>
-      </td>
-      
-    </tr>
-    
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>
-      	<span>
-      		<a href= " " > Xóa </a> 
-      		|
-      		<a href= "" > Sửa </a>
-      	</span>
-      </td>
-      
-    </tr>
   </tbody>
 </table>
+
+     	
 
 
      	<button type="button" style="margin-left: 5%" class="btn btn-dark"><a style="color: #FFF" href= "" > Tạo mới  </a></button>

@@ -41,6 +41,21 @@ public class musicSevrice implements ImusicService{
 	public List<musicModel> findALL_bynewMusic() {
 		return this.music_Dao.findALL_bynewMusic();
 	}
+	@Override
+	public List<musicModel> findALL_bynewMusic_limit(Integer start, Integer sobai1trang) {
+		return this.music_Dao.findALL_bynewMusic_limit(start, sobai1trang);
+	}
+	@Override
+	public List<music_casiModel> findALL_Music() {
+		return this.music_Dao.findALL_Music();
+	}
+	@Override
+	public void delete_IDbaihat(Integer idbaihat) {
+		this.music_Dao.delete_IDbaihat(idbaihat);
+		
+	}
+	
 
 
+	
 }

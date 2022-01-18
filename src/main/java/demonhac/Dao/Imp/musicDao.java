@@ -197,7 +197,7 @@ public class musicDao extends AbstractDao implements ImusicDao{
 		Connection CON = null;// dùng để  lưu  chuôi  kết nối từ abs....
 		PreparedStatement ps=null;// dùng dể thực hiện try vaans;
 	    ResultSet rs=null;	 // dùng dể lưu dữ liệu trả về
-		String sql="SELECT * FROM `music`  ORDER BY luotnghe DESC  LIMIT 0,12";
+		String sql="SELECT * FROM `music`  ORDER BY luotnghe DESC  LIMIT 0,20";
 		   
 	    CON=this.getConnection();
 	    try {
@@ -224,6 +224,91 @@ public class musicDao extends AbstractDao implements ImusicDao{
 		}    	 
 	}
 
+	@Override
+	public List<musicModel> findALL_bynewMusic_limit(Integer start, Integer sobai1trang) {
+		List<musicModel> ds= new ArrayList<musicModel>();
+		Connection CON = null;// dùng để  lưu  chuôi  kết nối từ abs....
+		PreparedStatement ps=null;// dùng dể thực hiện try vaans;
+	    ResultSet rs=null;	 // dùng dể lưu dữ liệu trả về
+		String sql="SELECT * FROM `music`  ORDER BY luotnghe DESC  LIMIT ?,?";
+		   
+	    CON=this.getConnection();
+	    try {
+			ps=CON.prepareStatement(sql);
+			ps.setInt(1, start);
+			ps.setInt(2, sobai1trang);
+			rs=ps.executeQuery();			
+			while (rs.next()) {
+				musicModel music = new musicModel();
+	    		  	music.setId(rs.getInt(1));	
+	    			music.setIdcasi(rs.getInt(2));
+	    			music.setIdtheloai(rs.getInt(3));
+	    			music.setNgaytao(rs.getString(4));
+	    			music.setLuotnghe(rs.getInt(5));
+	    			music.setLinkhinhanh(rs.getString(6));
+	    			music.setTennhac(rs.getString(7));
+	    			music.setLinknhac(rs.getString(8));	
+	    			music.setLoibaihat(rs.getString(9));
+	    			
+	              ds.add(music);
+	           }
+			return ds;
+		} catch (SQLException e) {					
+			e.printStackTrace();
+			return null;
+		}   
+	}
+
+	@Override
+	public List<music_casiModel> findALL_Music() {
+		List<music_casiModel> ds= new ArrayList<music_casiModel>();
+		Connection CON = null;// dùng để  lưu  chuôi  kết nối từ abs....
+		PreparedStatement ps=null;// dùng dể thực hiện try vaans;
+	    ResultSet rs=null;	 // dùng dể lưu dữ liệu trả về
+		String sql="SELECT music.*,casi.tencasi,casi.mota,casi.hinhanh,theloai.tentheloai FROM `music` INNER JOIN casi INNER JOIN theloai  on music.idcasi=casi.id AND theloai.id=music.idtheloai";
+	    CON=this.getConnection();
+	    try {
+			ps=CON.prepareStatement(sql);
+			rs=ps.executeQuery();			
+			while (rs.next()) {
+				music_casiModel music = new music_casiModel();
+	    		  music.setId(rs.getInt(1));	
+	    			music.setIdcasi(rs.getInt(2));
+	    			music.setIdtheloai(rs.getInt(3));
+	    			music.setNgaytao(rs.getString(4));
+	    			music.setLuotnghe(rs.getInt(5));
+	    			music.setLinkhinhanh(rs.getString(6));
+	    			music.setTennhac(rs.getString(7));
+	    			music.setLinknhac(rs.getString(8));	
+	    			music.setLoibaihat(rs.getString(9));
+	    			music.setTencasi(rs.getString(10));
+	    			music.setMota(rs.getString(11));
+	    			music.setHinhanh(rs.getString(12));
+	    			music.setTentheloai(rs.getString(13));
+	              ds.add(music);
+	           }
+			return ds;
+		} catch (SQLException e) {					
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public void delete_IDbaihat(Integer idbaihat) {
+		Connection CON = null;// dùng để  lưu  chuôi  kết nối từ abs....
+		PreparedStatement ps=null;// dùng dể thực hiện try vaans;
+		String sql="DELETE FROM music WHERE id = ?";
+	    CON=this.getConnection();
+		try {
+			ps=CON.prepareStatement(sql);
+			ps.setInt(1, idbaihat);
+			ps.execute();
+		} catch (Exception e) {
+			e.printStackTrace();			
+		}
+		
+	}
 	
 	
 	

@@ -43,4 +43,6 @@ public class commentDao extends AbstractDao implements IcommentDao{
 		}    	 
 	}
 
+
+
 }

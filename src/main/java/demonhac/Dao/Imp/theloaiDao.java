@@ -96,6 +96,22 @@ public class theloaiDao extends AbstractDao implements ItheloaiDao
 		}    	 
 	    	     
 	}
+
+	@Override
+	public void delete_IDtheloai(Integer idtheloai) {
+		Connection CON = null;// dùng để  lưu  chuôi  kết nối từ abs....
+		PreparedStatement ps=null;// dùng dể thực hiện try vaans;
+		String sql="DELETE FROM theloai WHERE id = ?";
+	    CON=this.getConnection();
+		try {
+			ps=CON.prepareStatement(sql);
+			ps.setInt(1, idtheloai);
+			ps.execute();
+		} catch (Exception e) {
+			e.printStackTrace();			
+		}
+		
+	}
 	
 	
 

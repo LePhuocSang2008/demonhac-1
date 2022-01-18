@@ -62,10 +62,15 @@
    
    <definition name="admin_index.chung"  
        template="/WEB-INF/views/block/admin.jsp">  
+    <put-attribute name="admin_index" value="" />
     <put-attribute name="admin_casi" value="" />
     <put-attribute name="admin_theloai" value="" />
     <put-attribute name="admin_baihat" value="" />
     <put-attribute name="admin_taikhoan" value="" />
+   </definition>
+   
+   <definition name="admin_index"  extends="admin_index.chung">  
+	<put-attribute name="admin_index" value="/WEB-INF/views/page/admin_index.jsp" />
    </definition>
    
    <definition name="admin_casi"  extends="admin_index.chung">  

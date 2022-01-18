@@ -118,30 +118,29 @@
 <!-- Songs details section -->
 
 <!-- Bình luận -->
-<section class="player-section set-bg " style="padding: 25px 47px;"  data-setbg="https://i.ytimg.com/vi/0BzZO8ElOhQ/sddefault.jpg">		
+<section class="player-section set-bg " style="padding: 25px 47px;"  data-setbg="https://i.ytimg.com/vi/0BzZO8ElOhQ/sddefault.jpg">	
+	<c:forEach var="item" items="${comment_music}">
 	<div class="player-box" style="padding: 13px 69px 20px 19px;">
 			
 		<div class="tarck-thumb">
-			<img style="height: 60px;" src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-hand-drawn-flat-wind-user-avatar-icon-png-image_4492039.jpg" alt="">			
+			<img style="height: 60px;" src="${item.hinhanh_user}" alt="">			
 		</div>
 	<div class="wave-player-warp" style="padding-top: 0px;padding-left: 15px;">
 		<div class="row-lg-3">
 			<div class="col-lg-8">
 				<div class="wave-player-info" >
-					<h2  style="font-size: 14px;">Sơn bùi</h2>
-					<p style="font-size: 13px;">Hay quá anh ơi</p>
+					<h2  style="font-size: 14px;">${item.tentk}</h2>
+					<p style="font-size: 13px;">${item.textComment}</p>
 				</div>
 			</div>
 		</div>
-		<div id="wavePlayer" class="clierfix">
-			<div class="wavePlayer_controls" style="    padding-top: 0px;">
-				<button type="button" class="btn btn-primary">comment</button>
-			</div>
-		</div>
+		
 	</div>
 	
 	</div>
 	<hr style="margin-top: -9.9px;">
+	</c:forEach>
+	
 	<div class="player-box" style="padding: 13px 69px 20px 19px;">
 			
 		<div class="tarck-thumb">
@@ -152,7 +151,9 @@
 			<div class="col-lg-8">
 				<div class="wave-player-info" >
 					<h2  style="font-size: 14px;">Sơn bùi</h2>
-					<p style="font-size: 13px;">Hay quá anh ơi</p>
+					<div class="mb-3">
+  						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -162,6 +163,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	
 	</div>
 	</section>
@@ -176,7 +179,7 @@
 			<c:forEach var="item" items="${listmusic_notcasi}">
 				<div class="col-xl-3 col-sm-6">
 					<div class="similar-song">
-						<img class="ss-thumb" src="${item.linkhinhanh }" alt="" onclick="doitrang('http://localhost:8080/demonhac/artist/?idmusic=${item.id}')">
+						<img style="height: 50%; width: 70%" class="ss-thumb" src="${item.linkhinhanh }" alt="" onclick="doitrang('http://localhost:8080/demonhac/artist/?idmusic=${item.id}')">
 						<h4>${item.tennhac }</h4>
 						<p>${item.tencasi }</p>					
 					</div>

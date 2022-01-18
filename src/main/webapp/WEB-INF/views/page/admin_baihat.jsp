@@ -17,66 +17,32 @@
       <th scope="col">Tên nhạc</th>
       <th scope="col">Link nhạc</th>
       <th scope="col">Lời bài hát</th>
+      <th scope="col">Luợt nghe</th>
       <th scope="col"></th>
   </thead>
   <tbody>
+  <%int i = 1;%>
+  <c:forEach var="item" items="${baihat}">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
+      <th scope="row"><% out.print(i++); %></th>
+      <td>${item.tencasi }</td>
+      <td>${item.tentheloai }</td>
+      <td>${item.ngaytao }</td> 
+      <td><img style="width: 100%; height: 100%" src="${item.linkhinhanh }" alt="" ></td> 
+      <td>${item.tennhac }</td> 
+      <td>${item.linknhac }</td> 
+      <td>${item.loibaihat }</td> 
+      <td>${item.luotnghe }</td> 
       <td>
       	<span>
-      		<a href= " " > Xóa </a> 
+      		<a href= "http://localhost:8080/demonhac/xoabaihat?idbaihat=${item.id}" > Xóa </a> 
       		|
       		<a href= "" > Sửa </a>
       	</span>
       </td>
       
     </tr>
-    
-    
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>
-      	<span>
-      		<a href= " " > Xóa </a> 
-      		|
-      		<a href= "" > Sửa </a>
-      	</span>
-      </td>
-      
-    </tr>
-    
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>Mark</td> 
-      <td>
-      	<span>
-      		<a href= " " > Xóa </a> 
-      		|
-      		<a href= "" > Sửa </a>
-      	</span>
-      </td>
-      
-    </tr>
+   </c:forEach>
   </tbody>
 </table>
 

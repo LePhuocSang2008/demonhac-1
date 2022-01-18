@@ -22,7 +22,7 @@
 										
 			</div>
 		</div>
-		<!--<div class="container">    
+		<div class="container">    
 		  <ul class="pagination">	    
 		    <c:if test="${trang > 1 }">
 		    	<li class="page-item"><a class="page-link" href="http://localhost:8080/demonhac/?page=${trang-1 }">Truoc</a></li>
@@ -41,6 +41,6 @@
 		    	<li class="page-item"><a class="page-link" href="http://localhost:8080/demonhac/?page=${trang+1 }">Sau</a></li>
 		    </c:if>
 		  </ul>
-		</div>-->
+		</div>
 	</section>
 	<!-- Playlist section end -->

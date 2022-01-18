@@ -11,4 +11,6 @@ public interface IcasiDao {
 	List<music_casiModel> findALL_byIdCasi_Music(Integer idcasi);
 	List<casiModel> find_byIdCasi(Integer idcasi);
 	List<music_casiModel> findALL_byIdCasi_Music_limit(Integer idcasi,Integer start,Integer somusic1trang);
+	
+	void delete_IDcasi(Integer idcasi);
 }

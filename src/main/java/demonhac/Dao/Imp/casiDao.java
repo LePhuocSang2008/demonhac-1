@@ -169,6 +169,22 @@ public class casiDao  extends AbstractDao implements IcasiDao{
 			return null;
 		}	
 	}
+
+	@Override
+	public void delete_IDcasi(Integer idcasi) {
+		Connection CON = null;// dùng để  lưu  chuôi  kết nối từ abs....
+		PreparedStatement ps=null;// dùng dể thực hiện try vaans;
+		String sql="DELETE FROM casi WHERE id = ?";
+	    CON=this.getConnection();
+		try {
+			ps=CON.prepareStatement(sql);
+			ps.setInt(1, idcasi);
+			ps.execute();
+		} catch (Exception e) {
+			e.printStackTrace();			
+		}
+		
+	}
 	
 	
 

@@ -17,55 +17,28 @@
       <th scope="col"></th>
       
   </thead>
-  <tbody>
+  <tbody>\
+	<%int i = 1;%>
+  	<c:forEach var="item" items="${taikhoan}">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td> 
+      <th scope="row"><% out.print(i++); %></th>
+      <td>${item.tentk }</td>
+      <td>${item.matkhau }</td>
+      <td><img style="width: 10%; height: 10%" src="${item.hinhanh }" alt="ảnh" ></td>
+      <td>${item.quyen }</td> 
       <td>
       	<span>
-      		<a href= " " > Xóa </a> 
+      		<a href= "http://localhost:8080/demonhac/xoataikhoan?idtaikhoan=${item.id} " > Xóa </a> 
       		|
       		<a href= "" > Sửa </a>
       	</span>
       </td>
       
     </tr>
+   </c:forEach>
     
     
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>
-      	<span>
-      		<a href= " " > Xóa </a> 
-      		|
-      		<a href= "" > Sửa </a>
-      	</span>
-      </td>
-      
-    </tr>
     
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td>
-      <td>Mark</td> 
-      <td>
-      	<span>
-      		<a href= " " > Xóa </a> 
-      		|
-      		<a href= "" > Sửa </a>
-      	</span>
-      </td>
-      
-    </tr>
   </tbody>
 </table>
 

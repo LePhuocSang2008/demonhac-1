@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import demonhac.Model.music_casiModel;
 import demonhac.Model.theloaiModel;
@@ -41,10 +42,25 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = {"/","/index"},method = RequestMethod.GET)// đường dẫn
-	public String index(ModelMap md)
+	public String index(ModelMap md,@RequestParam (value = "page", defaultValue = "1") int page)
 	{	
-		md.addAttribute("theloai",this.theloai_Service.findALL());		
-		md.addAttribute("newMusic",this.music_Service.findALL_bynewMusic());
+		Integer sobai1trang = 8;
+		Integer tongbai = this.music_Service.findALL_bynewMusic().size(); //Tra ve tong  so luong 
+		Integer tongsotrang = 0;
+		
+		//set gia tri tong so trang
+		if (tongbai % sobai1trang != 0) 
+			tongsotrang = tongbai / sobai1trang + 1;	
+		else 
+			tongsotrang = tongbai / sobai1trang;		
+		//Vi tri limit muon lay
+		Integer start = (page - 1)* sobai1trang;
+		md.addAttribute("theloai",this.theloai_Service.findALL());				
+		md.addAttribute("newMusic",this.music_Service.findALL_bynewMusic_limit(start, sobai1trang));
+		md.addAttribute("trang",page);
+		md.addAttribute("tongsotrang",tongsotrang);
+
+		
 		return "index_user";// trả về giao diện ko cần đuôi .jsp
 	}
 	
@@ -86,18 +102,21 @@ public class HomeController {
 		return "artist";
 	}
 	
+	//trang lien he
 	@RequestMapping(value = "/contact")
 	public String contact(ModelMap md) {
 		md.addAttribute("theloai",this.theloai_Service.findALL());
 		return "contact";
 	}
 	
+	//trang tin tuc
 	@RequestMapping(value = "/blog")
 	public String blog(ModelMap md) {
 		md.addAttribute("theloai",this.theloai_Service.findALL());
 		return "blog";
 	}
 	
+	//trang ca si
 	@RequestMapping(value = "/singer",method = RequestMethod.GET)
 	public String singer(ModelMap md,@RequestParam( value  ="page", defaultValue = "1" ) int page) {
 		Integer socasi1trang=9;
@@ -116,6 +135,7 @@ public class HomeController {
 		return "singer";
 	}
 	
+	//trang chi tiet ca si
 	@RequestMapping(value = "/singerDetails",method = RequestMethod.GET)
 	public String singerDetails(ModelMap md,@RequestParam( value  ="idcasi", defaultValue = "1" ) int idcasi,
 											@RequestParam( value  ="page", defaultValue = "1" ) int page) {
@@ -135,65 +155,137 @@ public class HomeController {
 		return "singerDetails";
 	}
 	
+	// trang dang nhap
 	@RequestMapping(value = "/login")
 	public String login(ModelMap md) {
 		return "login";
 	}
 	
+	//xulidangnhap
+	@RequestMapping(value = "/xulilogin", method = RequestMethod.POST)
+	public String xulylogin(ModelMap md , @RequestParam("username") String username,
+											@RequestParam("password") String password,
+											@RequestParam (value = "page", defaultValue = "1") int page,
+											HttpSession session) {
+		
+		
+		Integer tonguser =this.user_Sevrice.findALL_byUser_Pass(username,password).size();// trả về số lương user	 
+		 if( tonguser > 0 &&  this.user_Sevrice.findALL_byUser_Pass(username,password).get(0).getQuyen() == 0) {		 
+			session.setAttribute("username", username);
+			return "admin_index";	
+		 }else if(tonguser > 0 &&  this.user_Sevrice.findALL_byUser_Pass(username,password).get(0).getQuyen() == 1) {
+			    Integer sobai1trang = 8;
+				Integer tongbai = this.music_Service.findALL_bynewMusic().size(); //Tra ve tong  so luong 
+				Integer tongsotrang = 0;
+				//set gia tri tong so trang
+				if (tongbai % sobai1trang != 0) 
+					tongsotrang = tongbai / sobai1trang + 1;
+				else 
+					tongsotrang = tongbai / sobai1trang;
+				//Vi tri limit muon lay
+				Integer start = (page - 1)* sobai1trang;
+				md.addAttribute("theloai",this.theloai_Service.findALL());		
+				md.addAttribute("newMusic",this.music_Service.findALL_bynewMusic_limit(start, sobai1trang));
+				md.addAttribute("trang",page);
+				md.addAttribute("tongsotrang",tongsotrang);	
+				
+				
+			return "index_user";
+		}else{
+			md.put("error", "Tài khoản không hợp lệ");
+			return "login";
+		 }	
+	}
+	
+	//trang dang ki
 	@RequestMapping(value = "/registration")
 	public String registration(ModelMap md) {
 		return "registration";
 	}
 	
-	@RequestMapping(value = "/xulilogin", method = RequestMethod.POST)
-	public String xulylogin(ModelMap md , @RequestParam("username") String username,
+	@RequestMapping(value = "/xulidangky", method = RequestMethod.POST)
+	public String xulydangky(ModelMap md , @RequestParam("username") String username,
+											@RequestParam("img") String img,
 											@RequestParam("password") String password,
-											HttpSession session) {
-		
-		
-		Integer tonguser =this.user_Sevrice.findALL_byUser_Pass(username,password).size();// trả về số lương ca sĩ
-//			Integer quyen = this.user_Sevrice.findALL_byUser_Pass(username,password).get(0).getQuyen();
-		 
-		 if( tonguser > 0 &&  this.user_Sevrice.findALL_byUser_Pass(username,password).get(0).getQuyen() == 0) {		 
-			session.setAttribute("username", username);
-			return "admin_casi";	
-		 }else if(tonguser > 0 &&  this.user_Sevrice.findALL_byUser_Pass(username,password).get(0).getQuyen() == 1) {
-			 session.setAttribute("username", username);
-			 md.addAttribute("theloai",this.theloai_Service.findALL());		
-			 md.addAttribute("newMusic",this.music_Service.findALL_bynewMusic());
-			return "index_user";
-		}else{
-			md.put("error", "Invalid Account");
-			return "login";
-		 }	
+											@RequestParam("password1") String password1										
+											) {
+		if(password.equals(password1)) {
+			this.user_Sevrice.add_user(username,img,password);
+			md.put("error", "Đăng kí thành công");
+			return "registration";
+		} else {
+			md.put("error", "Tài khoản không hợp lệ");
+			return "registration";
+		}
 	}
 	
 	
+	//dang xuat
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("username");
 		return "login";
 	}
 	
-	@RequestMapping(value = "/admin_casi")
+	
+	@RequestMapping(value = "/admin_index")
+	public String admin_index(ModelMap md) {	
+		return "admin_index";
+	}
+	
+	//trang admincasi
+	@RequestMapping(value = "/admin_casi", method = RequestMethod.GET)
 	public String admin_casi(ModelMap md) {	
+		md.addAttribute("casi",this.casi_Sevrice.findALL());
 		return "admin_casi";
 	}
 	
+	//xoacasi
+	@RequestMapping(value = "/xoacasi", method = RequestMethod.GET)
+	public RedirectView xoacasi(ModelMap md , @RequestParam("idcasi") int idcasi){
+		this.casi_Sevrice.delete_IDcasi(idcasi);
+		return new RedirectView("http://localhost:8080/demonhac/admin_casi");	
+	}
+	
+	//trang admintheloai
 	@RequestMapping(value = "/admin_theloai")
 	public String admin_theloai(ModelMap md) {	
+		md.addAttribute("theloai",this.theloai_Service.findALL());
 		return "admin_theloai";
 	}
 	
-	@RequestMapping(value = "/admin_baihat")
-	public String admin_baihat(ModelMap md) {	
-		return "admin_baihat";
+	//xoatheloai
+	@RequestMapping(value = "/xoatheloai", method = RequestMethod.GET)
+	public RedirectView xoatheloai(ModelMap md , @RequestParam("idtheloai") int idtheloai){
+		this.theloai_Service.delete_IDtheloai(idtheloai);
+		return new RedirectView("http://localhost:8080/demonhac/admin_theloai");	
 	}
 	
+	//trang adminbaihat
+	@RequestMapping(value = "/admin_baihat")
+	public String admin_baihat(ModelMap md) {
+		md.addAttribute("baihat",this.music_Service.findALL_Music());
+		return "admin_baihat";
+	}
+	//xoatheloai
+		@RequestMapping(value = "/xoabaihat", method = RequestMethod.GET)
+		public RedirectView xoabaihat(ModelMap md , @RequestParam("idbaihat") int idbaihat){
+			this.music_Service.delete_IDbaihat(idbaihat);
+			return new RedirectView("http://localhost:8080/demonhac/admin_baihat");	
+		}
+	
+	//trang admintaikhoan
 	@RequestMapping(value = "/admin_taikhoan")
 	public String admin_taikhoan(ModelMap md) {	
+		md.addAttribute("taikhoan",this.user_Sevrice.findALL());
 		return "admin_taikhoan";
 	}
 	
+	//xoatheloai
+	@RequestMapping(value = "/xoataikhoan", method = RequestMethod.GET)
+	public RedirectView xoataikhoan(ModelMap md , @RequestParam("idtaikhoan") int idtaikhoan){
+		this.user_Sevrice.delete_IDtaikhoan(idtaikhoan);
+		return new RedirectView("http://localhost:8080/demonhac/admin_taikhoan");	
+	}
 
 }

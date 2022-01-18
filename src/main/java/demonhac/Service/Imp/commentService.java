@@ -19,4 +19,7 @@ private IcommentDao comment_Dao;
 		return this.comment_Dao.findALL_byIDmusic(id_music);
 	}
 
+	
+	
+
 }

@@ -19,5 +19,20 @@ public class userService implements IuserService{
 	public List<userModel> findALL_byUser_Pass(String username, String password) {
 		return this.user_Dao.findALL_byUser_Pass(username, password);
 	}
+	@Override
+	public void add_user(String username, String img, String password) {
+		this.user_Dao.add_user(username, img,password);
+		
+	}
+	@Override
+	public List<userModel> findALL() {
+		return this.user_Dao.findALL();
+	}
+	
+	@Override
+	public void delete_IDtaikhoan(Integer idtaikhoan) {
+		this.user_Dao.delete_IDtaikhoan(idtaikhoan);
+		
+	}
 
 }

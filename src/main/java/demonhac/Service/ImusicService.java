@@ -13,4 +13,9 @@ public interface ImusicService {
 	List<mucsic_theloaiModel> findALL_byIDcasi_notmusic(Integer id_casi,Integer id_music);
 	List<music_casiModel> findALL_byIDtheloai_notcasi(Integer id_theloai,Integer id_casi);
 	List<musicModel> findALL_bynewMusic();
+	
+	List<musicModel> findALL_bynewMusic_limit(Integer start,Integer sobai1trang);
+	List<music_casiModel> findALL_Music();
+	
+	void delete_IDbaihat(Integer idbaihat);
 }

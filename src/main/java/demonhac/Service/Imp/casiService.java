@@ -45,4 +45,12 @@ public class casiService implements IcasiSevrice{
 		return this.casi_Dao.findALL_byIdCasi_Music_limit(idcasi, start, somusic1trang);
 	}
 
+	@Override
+	public void delete_IDcasi(Integer idcasi) {
+		this.casi_Dao.delete_IDcasi(idcasi);
+		
+	}
+	
+	
+
 }

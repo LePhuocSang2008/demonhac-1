@@ -30,20 +30,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	           <!--form-stars-here-->
 						<div class="wthree-form">
 							<h2>Điền vào biểu mẫu bên dưới để đăng ký</h2>
+							<h2 style="font-size: 15px">${error}</h2>
 							
 							
 							
-							<form action="#" method="post">
+							<form action="xulidangky" method="post">
 								<div class="form-sub-w3">
 									<input type="text" name="username" placeholder="Tên tài khoản " required="" />
-									<input style="margin-top: 5%" type="text" name="username" placeholder="Nhập link hình ảnh " required="" />
+									<input style="margin-top: 5%" type="text" name="img" placeholder="Nhập link hình ảnh " required="" />
 								<div class="icon-w3">
 									<i class="fa fa-user" aria-hidden="true"></i>
 								</div>
 								</div>
 								<div class="form-sub-w3">
 									<input type="password" name="password" placeholder="Mật khẩu" required="" />
-									<input style="margin-top: 5%" type="password" name="password" placeholder="Nhập lại mật khẩu" required="" />
+									<input style="margin-top: 5%" type="password" name="password1" placeholder="Nhập lại mật khẩu" required="" />
 								<div class="icon-w3">
 									
 									<i class="fa fa-unlock-alt" aria-hidden="true"></i>

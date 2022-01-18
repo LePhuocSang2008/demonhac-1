@@ -22,7 +22,7 @@
 	</div>
 	<!-- Header section -->
 	<header class="header-section clearfix">
-		<a href="index.html" class="site-logo">
+		<a href="http://localhost:8080/demonhac" class="site-logo">
 			<img src="<c:url value="/resources/img/logo.png" />" alt="">
 		</a>
 		<div class="header-right">
@@ -49,6 +49,7 @@
      	<tiles:insertAttribute name="admin_theloai" />
      	<tiles:insertAttribute name="admin_baihat" />
      	<tiles:insertAttribute name="admin_taikhoan" />
+     	<tiles:insertAttribute name="admin_index" />
      	
      	
 

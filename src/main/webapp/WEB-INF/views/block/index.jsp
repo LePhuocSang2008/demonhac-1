@@ -22,16 +22,21 @@
 	</div>
 	<!-- Header section -->
 	<header class="header-section clearfix">
-		<a href="index.html" class="site-logo">
+		<a href="http://localhost:8080/demonhac" class="site-logo">
 			<img src="<c:url value="/resources/img/logo.png" />" alt="">
 		</a>
 		<div class="header-right">
 			
 			
+ 
 			<div class="user-panel" >
+				
 				<a href="http://localhost:8080/demonhac/login" class="login">Đăng nhập</a>
 				<span>|</span>
+				
 				<a href="http://localhost:8080/demonhac/registration" class="register">Đăng ký</a>
+				
+				
 				
 			</div> 
 		</div>
